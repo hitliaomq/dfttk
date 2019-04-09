@@ -48,6 +48,7 @@ class RelaxSet(DictSet):
         'ISIF': 3,
         "ICHARG": 2,
         'ENCUT': 520,
+        'EDIFFG': -0.05
     })
     # now we reset the potentials
     CONFIG['POTCAR'].update(POTCAR_UPDATES)
@@ -81,13 +82,11 @@ class ForceConstantsSet(DictSet):
     CONFIG['INCAR'].pop('ENCUT')  # use the ENCUT set by PREC
     CONFIG['INCAR'].update({
         'EDIFF_PER_ATOM': 1e-6,
-        'ISMEAR': 1,
-        'SIGMA': 0.2,
+        'ISMEAR': 0,
+        'SIGMA': 0.05,
         'LREAL': False,
         'ISIF': 0,  # only calculate the forces, stress tensor is not needed
-        'IBRION': 6,  # calculate force constants by finite differences with symmetry
-        'POTIM': 0.015,  # displacement distance
-        'NFREE': 2,  # how many displacments to do. 2 gives +POTIM and -POTIM
+        'IBRION': 8,  # calculate force constants by perturbation theory with symmetry
         'NSW': 1,  # backwards compatibility setting
         'PREC': 'Accurate',
         'ALGO': 'NORMAL',
