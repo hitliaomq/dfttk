@@ -17,6 +17,7 @@ from collections import defaultdict
 import numpy as np
 from scipy.optimize import minimize
 from pymatgen.analysis.eos import EOS, EOSError
+from pymatgen.core.units import FloatWithUnit
 
 from dfttk.analysis.thermal_electronic import calculate_thermal_electronic_contribution
 from dfttk.analysis.debye import DebyeModel
@@ -101,6 +102,7 @@ class Quasiharmonic(object):
         # set up the final variables of the optimized Gibbs energies
         self.gibbs_free_energy = []  # optimized values, eV
         self.optimum_volumes = []  # in Ang^3
+        self.B_T = []
         self.optimize_gibbs_free_energy()
 
     def optimize_gibbs_free_energy(self):
@@ -113,9 +115,10 @@ class Quasiharmonic(object):
             are skipped.
         """
         for temp_idx in range(self.temperatures.size):
-            G_opt, V_opt = self.optimizer(temp_idx)
+            G_opt, V_opt, B_T = self.optimizer(temp_idx)
             self.gibbs_free_energy.append(float(G_opt))
             self.optimum_volumes.append(float(V_opt))
+            self.B_T.append(float(B_T))
 
     def optimizer(self, temp_idx):
         """
@@ -148,8 +151,20 @@ class Quasiharmonic(object):
         # the same as minimum energy and min volume.
         volume_guess = eos_fit.volumes[np.argmin(eos_fit.energies)]
         min_wrt_vol = minimize(eos_fit.func, volume_guess)
+        B_T = self.calc_B_T(eos_fit, min_wrt_vol.x[0])
         # G_opt=G(V_opt, T, P), V_opt
-        return min_wrt_vol.fun, min_wrt_vol.x[0]
+        return min_wrt_vol.fun, min_wrt_vol.x[0], B_T
+
+    def calc_B_T(self, eos_fit, Vopt):
+        '''
+        Calculate the isothermal bulk modulus
+        B_T(p, T) = -V(dp/dV)_T = [V(d^2G/dV^2)_p,T]_Vopt
+        The second order deviation is calculated by finite difference method (centrial) with 2nd accuracy
+        If need higher accuracy , ref. http://web.media.mit.edu/~crtaylor/calculator.html
+        '''
+        dV = (np.amax(self.volumes) - np.amin(self.volumes))/1000.
+        G2V_2nd = (eos_fit.func(Vopt - dV) + eos_fit.func(Vopt + dV) - 2.*eos_fit.func(Vopt)) / (dV ** 2)
+        return float(FloatWithUnit(Vopt * G2V_2nd, "eV ang^-3").to("GPa"))
 
 
     def get_summary_dict(self):
@@ -162,4 +177,5 @@ class Quasiharmonic(object):
         d["gibbs_free_energy"] = self.gibbs_free_energy
         d["temperatures"] = self.temperatures
         d["optimum_volumes"] = self.optimum_volumes
+        d["B_T"] = self.B_T
         return d
