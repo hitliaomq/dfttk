@@ -114,10 +114,10 @@ The settings file is optional, if the user does not provide the settings file, t
 +----------------------------+---------------+-------------------------------------------------------+
 |phonon_supercell_matrix     |atoms          |The supercell matrix for phonon calculations.          |
 |                            |               |It can take the following values:                      |
-|                            |               |- Matrix, e.g. [[2, 0, 0], [0, 2, 0], [0, 0, 2]]       |
-|                            |               |- String: atoms/lattice/volume(the first letter works) |
-|                            |               |    Determining the supercell matrix automatically.    |
-|                            |               |    by atoms/lattice/volume ranges                     |
+|                            |               |**Matrix**, e.g. [[2, 0, 0], [0, 2, 0], [0, 0, 2]]     |
+|                            |               |**String**: atom/lattice/volume(the first letter works)|
+|                            |               |Determining the supercell matrix automatically.        |
+|                            |               |by atoms/lattice/volume ranges                         |
 +----------------------------+---------------+-------------------------------------------------------+
 |phonon_supercell_matrix_min |60             |The lower boundary for phonon_supercell_matrix(String) |
 +----------------------------+---------------+-------------------------------------------------------+
