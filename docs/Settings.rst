@@ -124,11 +124,11 @@ The settings file is optional, if the user does not provide the settings file, t
 |phonon_supercell_matrix_max |130            |The upper boundary for phonon_supercell_matrix(String) |
 +----------------------------+---------------+-------------------------------------------------------+
 |force_phonon                |False          |Force run phonon (True) or not(False),                 |
-|                            |               |No matter ISIF=4/stable_tor pass or not               |
+|                            |               |No matter ISIF=4/stable_tor pass or not                |
 +----------------------------+---------------+-------------------------------------------------------+
 |stable_tor                  |0.01           |Stable torlerance (The percentage of negative dos),    |
-|                            |               |If the negative part of DOS is larger than this value,|
-|                            |               |DFTTK won't run phonon for this structure.            |
+|                            |               |If the negative part of DOS is larger than this value, |
+|                            |               |DFTTK won't run phonon for this structure.             |
 +----------------------------+---------------+-------------------------------------------------------+
 
 - QHA settings
@@ -141,7 +141,7 @@ The settings file is optional, if the user does not provide the settings file, t
 |deformation_fraction|[-0.1, 0.1]    |The range of deformation, 0.1 means 10%                  |
 +--------------------+---------------+---------------------------------------------------------+
 |eos_tolerance       | 0.01          |The tolerance for eos fitting. If larger than this value,|
-|                    |               |DFTTK will append volumes automatically                 |
+|                    |               |DFTTK will append volumes automatically                  |
 +--------------------+---------------+---------------------------------------------------------+
 |t_min               | 5             |The mimimum of temperature in QHA process                |
 +--------------------+---------------+---------------------------------------------------------+
