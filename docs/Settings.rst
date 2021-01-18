@@ -101,7 +101,7 @@ The settings file is optional, if the user does not provide the settings file, t
 |symmetry_tolerance          | 0.05          |The tolerannce for symmetry                            |
 |                            |               |*It will be dropped in the future*                     |
 +----------------------------+---------------+-------------------------------------------------------+
-|relax_path                  |''             |The path of relaxiation                                |
+|relax_path                  |''             |The path of relaxiation.\n                             |
 |                            |               |*It will be dropped in the future*                     |
 +----------------------------+---------------+-------------------------------------------------------+
 
