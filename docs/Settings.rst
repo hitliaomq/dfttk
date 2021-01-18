@@ -55,18 +55,18 @@ The settings file is optional, if the user does not provide the settings file, t
 +----------------------------+---------------+-------------------------------------------------------+
 |Keywords                    | Default Value |Comments                                               |
 +----------------------------+---------------+-------------------------------------------------------+
-|magmom                      | No            |The MAGMOM for each atom, e.g. [4, 4, -4, 4]           |
+|magmom                      | No            |The MAGMOM for each atom, e.g. [4, 4, -4, 4].          |
 |                            |               |*Note*, the length must agree with the number of atoms |
 +----------------------------+---------------+-------------------------------------------------------+
-|metadata                    | No            |The metadata of the calculation. If the user provide it|
-|                            |               |DFTTK will find the existing calculations in the db,   |
-|                            |               |If not, it will generate by uuid4                      |
+|metadata                    | No            |The metadata of the calculation. If the user provides  |
+|                            |               |it, DFTTK will find the existing calculations in the   |
+|                            |               |databasse. If not, it will generate by uuid4.          |
 +----------------------------+---------------+-------------------------------------------------------+
 |isif4                       | False         |If run ISIF=4 following ISIF=7 in RobustOptmizeFW      |
 +----------------------------+---------------+-------------------------------------------------------+
-|level                       | 1             |Optimize level                                         |
+|level                       | 1             |Optimize level.                                        |
 |                            |               |If run ISIF=2 after last ISIF=4 in RobustOptimizeFW    |
-|                            |               |1 for run and 2 for not                                |
+|                            |               | 1 for run and 2 for not                               |
 +----------------------------+---------------+-------------------------------------------------------+
 |override_symmetry_tolerances| None          |Override the default symmetry tolerance, if None,      |
 |                            |               |{'tol_strain':0.05,'tol_energy':0.025, 'tol_bond':0.10}|
@@ -74,7 +74,7 @@ The settings file is optional, if the user does not provide the settings file, t
 |override_default_vasp_params| {}            |Override the default vasp settings                     |
 |                            |               |The optional keys is 'user_incar_settings',            |
 |                            |               |'user_kpoints_settings',                               |
-|                            |               |'user_potcar_functional'                               |
+|                            |               |'user_potcar_functional'.                              |
 |                            |               |For more details, ref.                                 |
 |                            |               |https://pymatgen.org/pymatgen.io.vasp.sets.html        |
 +----------------------------+---------------+-------------------------------------------------------+
@@ -89,20 +89,20 @@ The settings file is optional, if the user does not provide the settings file, t
 +----------------------------+---------------+-------------------------------------------------------+
 |verbose                     | False         |print(True) or not(False) some informations,  for debug|
 +----------------------------+---------------+-------------------------------------------------------+
-|passinitrun                 | False         |Pass init vasp result                                  |
-|                            |               |*It will be dropped in the future*                     |
+|passinitrun                 | False         |Pass init vasp result.                                 |
+|                            |               |**It will be dropped in the future**                   |
 +----------------------------+---------------+-------------------------------------------------------+
-|run_isif2                   | False         |If run ISIF=2 before ISIF=4 (True) or not (False)      |
-|                            |               |*It will be dropped in the future*                     |
+|run_isif2                   | False         |If run ISIF=2 before ISIF=4 (True) or not (False).     |
+|                            |               |**It will be dropped in the future**                   |
 +----------------------------+---------------+-------------------------------------------------------+
-|pass_isif4                  | False         |Whether pass isif=4 calculation                        |
-|                            |               |*It will be dropped in the future*                     |
+|pass_isif4                  | False         |Whether pass isif=4 calculation.                       |
+|                            |               |**It will be dropped in the future**                   |
 +----------------------------+---------------+-------------------------------------------------------+
-|symmetry_tolerance          | 0.05          |The tolerannce for symmetry                            |
-|                            |               |*It will be dropped in the future*                     |
+|symmetry_tolerance          | 0.05          |The tolerannce for symmetry.                           |
+|                            |               |**It will be dropped in the future**                   |
 +----------------------------+---------------+-------------------------------------------------------+
-|relax_path                  |''             |The path of relaxiation.\n                             |
-|                            |               |*It will be dropped in the future*                     |
+|relax_path                  |''             |The path of relaxiation.                               |
+|                            |               |**It will be dropped in the future**                   |
 +----------------------------+---------------+-------------------------------------------------------+
 
 - Phonon settings
@@ -116,7 +116,7 @@ The settings file is optional, if the user does not provide the settings file, t
 |                            |               |It can take the following values:                      |
 |                            |               |**Matrix**, e.g. [[2, 0, 0], [0, 2, 0], [0, 0, 2]]     |
 |                            |               |**String**: atom/lattice/volume(the first letter works)|
-|                            |               |Determining the supercell matrix automatically.        |
+|                            |               |Determining the supercell matrix automatically         |
 |                            |               |by atoms/lattice/volume ranges                         |
 +----------------------------+---------------+-------------------------------------------------------+
 |phonon_supercell_matrix_min |60             |The lower boundary for phonon_supercell_matrix(String) |
