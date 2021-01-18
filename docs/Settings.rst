@@ -59,29 +59,29 @@ The settings file is optional, if the user does not provide the settings file, t
 |                            |               |*Note*, the length must agree with the number of atoms |
 +----------------------------+---------------+-------------------------------------------------------+
 |metadata                    | No            |The metadata of the calculation. If the user provide it|
-|                            |               | DFTTK will find the existing calculations in the db,  |
-|                            |               | If not, it will generate by uuid4                     |
+|                            |               |DFTTK will find the existing calculations in the db,   |
+|                            |               |If not, it will generate by uuid4                      |
 +----------------------------+---------------+-------------------------------------------------------+
 |isif4                       | False         |If run ISIF=4 following ISIF=7 in RobustOptmizeFW      |
 +----------------------------+---------------+-------------------------------------------------------+
 |level                       | 1             |Optimize level                                         |
 |                            |               |If run ISIF=2 after last ISIF=4 in RobustOptimizeFW    |
-|                            |               | 1 for run and 2 for not                               |
+|                            |               |1 for run and 2 for not                                |
 +----------------------------+---------------+-------------------------------------------------------+
 |override_symmetry_tolerances| None          |Override the default symmetry tolerance, if None,      |
 |                            |               |{'tol_strain':0.05,'tol_energy':0.025, 'tol_bond':0.10}|
 +----------------------------+---------------+-------------------------------------------------------+
 |override_default_vasp_params| {}            |Override the default vasp settings                     |
 |                            |               |The optional keys is 'user_incar_settings',            |
-|                            |               |  'user_kpoints_settings',                             |
-|                            |               |  'user_potcar_functional'                             |
+|                            |               |'user_kpoints_settings',                               |
+|                            |               |'user_potcar_functional'                               |
 |                            |               |For more details, ref.                                 |
 |                            |               |https://pymatgen.org/pymatgen.io.vasp.sets.html        |
 +----------------------------+---------------+-------------------------------------------------------+
 |modify_incar_params         | {}            |Modify the incar settings in the fireworks level. e.g. |
 |                            |               |modify_incar_params =                                  |
-|                            |               | { 'Full relax': {'incar_update': {"LCHARG":False}},   |
-|                            |               |   'static': {'incar_update': "LAECHG":True}}          |
+|                            |               |{ 'Full relax': {'incar_update': {"LCHARG":False}},    |
+|                            |               |'static': {'incar_update': "LAECHG":True}}             |
 +----------------------------+---------------+-------------------------------------------------------+
 |modify_kpoints_params       | {}            |Modify the kpoints settings in the fireworks level.    |
 +----------------------------+---------------+-------------------------------------------------------+
@@ -90,19 +90,19 @@ The settings file is optional, if the user does not provide the settings file, t
 |verbose                     | False         |print(True) or not(False) some informations,  for debug|
 +----------------------------+---------------+-------------------------------------------------------+
 |passinitrun                 | False         |Pass init vasp result                                  |
-|                            |               | It will be dropped in the future                      |
+|                            |               |*It will be dropped in the future*                     |
 +----------------------------+---------------+-------------------------------------------------------+
 |run_isif2                   | False         |If run ISIF=2 before ISIF=4 (True) or not (False)      |
-|                            |               | It will be dropped in the future                      |
+|                            |               |*It will be dropped in the future*                     |
 +----------------------------+---------------+-------------------------------------------------------+
 |pass_isif4                  | False         |Whether pass isif=4 calculation                        |
-|                            |               | It will be dropped in the future                      |
+|                            |               |*It will be dropped in the future*                     |
 +----------------------------+---------------+-------------------------------------------------------+
 |symmetry_tolerance          | 0.05          |The tolerannce for symmetry                            |
-|                            |               | It will be dropped in the future                      |
+|                            |               |*It will be dropped in the future*                     |
 +----------------------------+---------------+-------------------------------------------------------+
 |relax_path                  |''             |The path of relaxiation                                |
-|                            |               | It will be dropped in the future                      |
+|                            |               |*It will be dropped in the future*                     |
 +----------------------------+---------------+-------------------------------------------------------+
 
 - Phonon settings
@@ -113,9 +113,9 @@ The settings file is optional, if the user does not provide the settings file, t
 |phonon                      | False         |Run phonon (True) or not(False, Debye model)           |
 +----------------------------+---------------+-------------------------------------------------------+
 |phonon_supercell_matrix     |atoms          |The supercell matrix for phonon calculations.          |
-|                            |               | It can take the following values:                     |
-|                            |               |  Matrix, e.g. [[2, 0, 0], [0, 2, 0], [0, 0, 2]]       |
-|                            |               |  String: atoms/lattice/volume(the first letter works) |
+|                            |               |It can take the following values:                      |
+|                            |               |- Matrix, e.g. [[2, 0, 0], [0, 2, 0], [0, 0, 2]]       |
+|                            |               |- String: atoms/lattice/volume(the first letter works) |
 |                            |               |    Determining the supercell matrix automatically.    |
 |                            |               |    by atoms/lattice/volume ranges                     |
 +----------------------------+---------------+-------------------------------------------------------+
@@ -124,11 +124,11 @@ The settings file is optional, if the user does not provide the settings file, t
 |phonon_supercell_matrix_max |130            |The upper boundary for phonon_supercell_matrix(String) |
 +----------------------------+---------------+-------------------------------------------------------+
 |force_phonon                |False          |Force run phonon (True) or not(False),                 |
-|                            |               | No matter ISIF=4/stable_tor pass or not               |
+|                            |               |No matter ISIF=4/stable_tor pass or not               |
 +----------------------------+---------------+-------------------------------------------------------+
 |stable_tor                  |0.01           |Stable torlerance (The percentage of negative dos),    |
-|                            |               | If the negative part of DOS is larger than this value,|
-|                            |               | DFTTK won't run phonon for this structure.            |
+|                            |               |If the negative part of DOS is larger than this value,|
+|                            |               |DFTTK won't run phonon for this structure.            |
 +----------------------------+---------------+-------------------------------------------------------+
 
 - QHA settings
@@ -141,7 +141,7 @@ The settings file is optional, if the user does not provide the settings file, t
 |deformation_fraction|[-0.1, 0.1]    |The range of deformation, 0.1 means 10%                  |
 +--------------------+---------------+---------------------------------------------------------+
 |eos_tolerance       | 0.01          |The tolerance for eos fitting. If larger than this value,|
-|                    |               | DFTTK will append volumes automatically                 |
+|                    |               |DFTTK will append volumes automatically                 |
 +--------------------+---------------+---------------------------------------------------------+
 |t_min               | 5             |The mimimum of temperature in QHA process                |
 +--------------------+---------------+---------------------------------------------------------+
