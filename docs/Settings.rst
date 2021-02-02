@@ -173,3 +173,23 @@ The settings file is optional, if the user does not provide the settings file, t
 +---------------+---------------+---------------------------------------------------------+
 
 
+Examples
+========
+
+Phonon run
+----------
+
+.. code-block:: yaml
+    
+    phonon: True
+    phonon_supercell_matrix: [[2, 0, 0], [0, 2, 0], [0, 0, 2]]
+
+Change the INCAR settings
+-------------------------
+
+.. code-block:: yaml
+    
+    override_default_vasp_params: {'user_incar_settings': {'ISIF': 5}}
+
+
+
